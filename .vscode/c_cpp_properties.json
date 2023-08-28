@@ -6,10 +6,7 @@
                 "${default}",
                 "${workspaceFolder}/godot-cpp/**"
             ],
-            "defines": [],
-            "compilerPath": "/usr/bin/g++",
-            "cStandard": "c17",
-            "cppStandard": "c++17"
+            "defines": []
         }
     ],
     "version": 4
