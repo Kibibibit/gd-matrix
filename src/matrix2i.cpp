@@ -3,6 +3,19 @@
 
 using namespace godot;
 
-void Matrix2i::_init(int width, int height) {
-    Matrix2Template::_init(0, width, height);
+Matrix2i::Matrix2i() {
+    this->data = new Matrix2Template<int>(0,0,0);
 }
+
+Matrix2i::~Matrix2i() {
+    delete this->data;
+}
+
+void Matrix2i::_bind_methods() {
+
+}
+
+void Matrix2i::_init(int width, int height) {
+    this->data->resize(width, height);
+}
+

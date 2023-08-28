@@ -2,29 +2,30 @@
 #define _GDMATRIX_MATRIX2_TEMPLATE_H
 
 
-#include <godot_cpp/classes/ref_counted.hpp>
 #include <vector>
 
-// redo this as a normal class and then have matrix2 and matrix2i call it like a wrapper
+template <class T>
+class Matrix2Template {
 
-namespace godot {
+    private:
+        std::vector<T> data;
+        T empty_value;
+        int width;
+        int height;
+        int get_index(int x, int y);
+    public:
+        Matrix2Template(T empty_value, int width, int height);
+        ~Matrix2Template();
+        int get_width();
+        int get_height();
+        void set_width(int width);
+        void set_height(int height);
+        T at(int x, int y);
+        void resize(int width, int height);
+        bool contains_point(int x, int y);
 
-    template <class T>
-    class Matrix2Template : public RefCounted {
-        GDCLASS(Matrix2Template<T>, RefCounted)
+};
 
-        private:
-            std::vector<T> data;
-            Vector2i size;
-        protected:
-            static void _bind_methods();
-            static void _init(T empty_value, int width, int height);
-        public:
-            Matrix2Template();
-            ~Matrix2Template();
 
-    };
-
-}
 
 #endif
