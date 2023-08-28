@@ -78,11 +78,13 @@ void Matrix2Template<T>::resize(int width, int height) {
         if (i < this->data.size()) {
             this->data->at(i) = new_data.at(i);
         } else {
+            // Only triggers if we're making the matrix bigger
             this->data->push_back(new_data.at(i));
         }
     }
 
-    while (this->data->size() > width*height) {
+    // Only triggers if we're making the matrix smaller
+    while (this->data->size() > new_data.size()) {
         this->data->pop_back();
     }
 
@@ -96,6 +98,12 @@ template <class T>
 T Matrix2Template<T>::at(int x, int y)
 {
     return this->data->at(get_index(x, y));
+}
+
+template <class T>
+void Matrix2Template<T>::set_at(T value, int x, int y)
+{
+    this->data->at(get_index(x,y)) = value;
 }
 
 template <class T>

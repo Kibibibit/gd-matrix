@@ -21,6 +21,7 @@ class Matrix2Template {
         void set_width(int width);
         void set_height(int height);
         T at(int x, int y);
+        void set_at(T value, int x, int y);
         void resize(int width, int height);
         bool contains_point(int x, int y);
 

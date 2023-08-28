@@ -20,6 +20,12 @@ namespace godot {
             Matrix2i();
             ~Matrix2i();
 
+            int get_at(int x, int y);
+            int get_at_v(Vector2i vector);
+
+            void set_at(int value, int x, int y);
+            void set_at_v(int value, Vector2i vector);
+
     };
 
 }
