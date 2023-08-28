@@ -1,6 +1,7 @@
 #include "matrix2_template.h"
 #include <vector>
-
+#include <string>
+#include <stdexcept>
 
 template <class T>
 Matrix2Template<T>::Matrix2Template(T empty_value, int width, int height)
@@ -24,16 +25,15 @@ Matrix2Template<T>::~Matrix2Template()
 template <class T>
 int Matrix2Template<T>::get_index(int x, int y)
 {
-    return x + (this->width * y);
-    // if (this->contains_index(x, y))
-    // {
-        
-    // }
-    // else
-    // {
-    //     //throw std::out_of_range("(" + std::to_string(x) + "," + std::to_string(y) + ") is invalid for matrix of size (" + std::to_string(this->width) + "," + std::to_string(this->height) + ")");
-    //     throw std::out_of_range("Bad index for matrix!");
-    // }
+
+    if (this->contains_point(x, y))
+    {
+        return x + (this->width * y);
+    }
+    else
+    {
+        throw std::out_of_range("(" + std::to_string(x) + "," + std::to_string(y) + ") is invalid for matrix of size (" + std::to_string(this->width) + "," + std::to_string(this->height) + ")");
+    }
 }
 
 template <class T>
@@ -65,7 +65,8 @@ void Matrix2Template<T>::resize(int new_width, int new_height)
 {
     std::vector<T> new_data = std::vector<T>();
 
-    for (int i = 0; i < new_width*new_height; i++) {
+    for (int i = 0; i < new_width * new_height; i++)
+    {
         new_data.push_back(empty_value);
     }
 
@@ -80,9 +81,9 @@ void Matrix2Template<T>::resize(int new_width, int new_height)
             }
         }
     }
-    for (int i = 0; i < (int) new_data.size(); i++)
+    for (int i = 0; i < (int)new_data.size(); i++)
     {
-        if (i < (int) this->data->size())
+        if (i < (int)this->data->size())
         {
             this->data->at(i) = new_data.at(i);
         }
@@ -120,7 +121,6 @@ bool Matrix2Template<T>::contains_point(int x, int y)
 {
     return x >= 0 && y >= 0 && x < this->width && y < this->height;
 }
-
 
 template class Matrix2Template<int>;
 template class Matrix2Template<float>;
